@@ -1,7 +1,7 @@
 const fs = require('fs')
 
-const INPUT_FILE = __dirname + '/07.input'
-const input = fs.readFileSync(INPUT_FILE, 'utf8').replace('\n', '').split(',')
+const INPUT_FILE = __dirname + '/08.input'
+const input = fs.readFileSync(INPUT_FILE, 'utf8').replace('\n', '').split('')
 const WIDTH = 25, HEIGHT = 6
 
 function getMinZerosProduct() {
@@ -12,15 +12,16 @@ function getMinZerosProduct() {
     let numZeros = 0
     let numOnes = 0
     let numTwos = 0
-    for (let i = layer * layerPixels; i < layerPixels; i++) {
-      if (input[i] === '0') {
+    for (let _i = 0; _i < layerPixels; _i++) {
+      const value = input[layerPixels * layer + _i]
+      if (value === '0') {
         numZeros++
         if (numZeros >= minZeros) {
           break
         }
-      } else if (input[i] === '1') {
+      } else if (value === '1') {
         numOnes++
-      } else if (input[i] === '2') {
+      } else if (value === '2') {
         numTwos++
       }
     }
@@ -33,4 +34,4 @@ function getMinZerosProduct() {
   return minZerosProduct
 }
 
-console.log(`product: ${getMinZeros()}`)
+console.log(`product: ${getMinZerosProduct()}`)
